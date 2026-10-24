@@ -1,11 +1,18 @@
-<div align="center">
+# Exam Guardrail System
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Integrity First Online Exam Monitoring Platform.
 
-  <h1>Built with AI Studio</h2>
+## Features
+- **Sentinel Client**: Real-time browser monitoring (tab switching, window resizing, keyboard hijacking protection).
+- **AI Proctoring**: Face detection, head pose estimation, and voice detection using TensorFlow.js.
+- **Auditor Dashboard**: Real-time violation logging and Trust Score calculation.
+- **Security**: Fullscreen lock, copy/paste blocking, and question visibility protection.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Setup
+1. The app runs on port 3000.
+2. AI models are loaded from public CDNs.
+3. SQLite is used for local persistence.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Environment Variables
+- `GEMINI_API_KEY`: For AI-assisted analysis (optional).
+- `JWT_SECRET`: For authentication.

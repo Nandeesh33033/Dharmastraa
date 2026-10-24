@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the system (student or teacher)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier" },
+        "name": { "type": "string", "description": "Full name" },
+        "role": { "type": "string", "enum": ["student", "admin"], "description": "User role" },
+        "email": { "type": "string", "format": "email", "description": "Email address" }
+      },
+      "required": ["id", "name", "role"]
+    },
+    "ExamSession": {
+      "title": "Exam Session",
+      "description": "A student's active exam session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "startTime": { "type": "string", "format": "date-time" },
+        "endTime": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["active", "submitted", "terminated"] },
+        "trustScore": { "type": "number" },
+        "lastHeartbeat": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "studentId", "status", "trustScore"]
+    },
+    "Violation": {
+      "title": "Violation",
+      "description": "A proctoring violation event",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "studentId": { "type": "string" },
+        "type": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "details": { "type": "object" }
+      },
+      "required": ["id", "sessionId", "studentId", "type", "timestamp"]
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "Student's submitted exam answers",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "studentId": { "type": "string" },
+        "answers": { "type": "object" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sessionId", "studentId", "answers", "submittedAt"]
+    },
+    "Config": {
+      "title": "System Configuration",
+      "description": "App configuration for subjects, teachers, and enrolled students",
+      "type": "object",
+      "properties": {
+        "items": { "type": "array" },
+        "activeSubjectId": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/config/{configId}": {
+      "schema": "Config",
+      "description": "System configurations for subjects, teachers, and students"
+    },
+    "/sessions/{sessionId}": {
+      "schema": "ExamSession",
+      "description": "Active and past exam sessions"
+    },
+    "/sessions/{sessionId}/violations/{violationId}": {
+      "schema": "Violation",
+      "description": "Violations for a specific session"
+    },
+    "/submissions/{submissionId}": {
+      "schema": "Submission",
+      "description": "Exam submissions"
+    }
+  }
+}

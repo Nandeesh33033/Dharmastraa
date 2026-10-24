@@ -1,0 +1,11 @@
+{
+  "name": "Remix Exam Guardrail System",
+  "description": "Dharmastra: Online Exam Proctoring System with deep biometric face recognition, continuous identity verification, and AI proctoring.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
